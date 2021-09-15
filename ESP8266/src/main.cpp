@@ -225,6 +225,8 @@ void setup()
     Serial.println("connected...yeey :)");
   }
 
+  wm.setWiFiAutoReconnect(true);
+
   // eeprom for storing api key
   EEPROM.begin(512);
 
@@ -455,8 +457,7 @@ void readTemperature()
 
 void contactBackend()
 {
-  if (1 == 1)
-  { // WiFi.status() == WL_CONNECTED) { //Check WiFi connection status
+  if(WiFi.status() == WL_CONNECTED) { //Check WiFi connection status
     String apikey_restored = readStringFromEEPROM(EEPROM_ADDRESS_APIKEY);
     String temp1 = String(temp[0]);
     String temp2 = String(temp[1]);
